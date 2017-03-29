@@ -4109,7 +4109,7 @@ function! s:DB_SQLSRV_execSql(str)
                 \ s:DB_option(' -P',  s:DB_get("passwd"), ' ') .
                 \ s:DB_option(' -H ', s:DB_get("host"), ' ') .
                 \ s:DB_option(' -S ', s:DB_get("srvname"), ' ') .
-                \ s:DB_option(' -d ', s:DB_get("dbname"), ' ') .
+                \ s:DB_option(' -D ', s:DB_get("dbname"), ' ') .
                 \ s:DB_option(' ', dbext#DB_getWTypeDefault("extra"), '') .
                 \ ' -i ' . s:dbext_tempfile
     let result = s:DB_runCmdJobSupport(dbext_bin, cmd, output, "")
