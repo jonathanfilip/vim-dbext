@@ -1,4 +1,4 @@
-" dbext.vim - Commn Database Utility
+" dbext.vim - Common Database Utility
 " Copyright (C) 2002-16, Peter Bagyinszki, David Fishburn
 " ---------------------------------------------------------------
 " File:          dbext_dbi.vim
@@ -7,7 +7,7 @@
 "                It adds transaction support and the ability
 "                to reach any database currently supported
 "                by Perl and DBI.
-" Version:       25.00
+" Version:       26.00
 " Maintainer:    David Fishburn <dfishburn dot vim at gmail dot com>
 " Authors:       David Fishburn <dfishburn dot vim at gmail dot com>
 " Last Modified: 2016 Sep 04
@@ -120,7 +120,17 @@
 "       perl -MCPAN -e shell
 "       perl -e "use DBD::ODBC;"
 "       perl -MDBD::ODBC -e "print $DBD::ODBC::VERSION;"
+"     This will show the various DBI drivers installed on your system:
 "       perl -MDBI -e "DBI->installed_versions;"
+"           Perl            : 5.020002    (MSWin32-x86-multi-thread-64int)
+"           OS              : MSWin32     (6.3)
+"           DBI             : 1.636
+"           DBD::mysql      : 4.036
+"           DBD::SQLite     : 1.50
+"           DBD::SQLAnywhere: 2.13
+"           DBD::Pg         : 3.5.1
+"           DBD::ODBC       : 1.50
+"           DBD::Crate      : 0.0.1
 "
 " Usage:
 "    dbext_dbi.vim is designed to be used by the dbext.vim plugin.
@@ -146,7 +156,7 @@
 if exists("g:loaded_dbext_dbi")
    finish
 endif
-let g:loaded_dbext_dbi = 2500
+let g:loaded_dbext_dbi = 2600
 
 " Turn on support for line continuations when creating the script
 let s:cpo_save = &cpo

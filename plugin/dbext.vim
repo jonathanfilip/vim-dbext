@@ -1,11 +1,11 @@
-" dbext.vim - Commn Database Utility
+" dbext.vim - Common Database Utility
 " Copyright (C) 2002-16, Peter Bagyinszki, David Fishburn
 " ---------------------------------------------------------------
-" Version:       25.00
+" Version:       26.00
 " Maintainer:    David Fishburn <dfishburn dot vim at gmail dot com>
 " Authors:       Peter Bagyinszki <petike1 at dpg dot hu>
 "                David Fishburn <dfishburn dot vim at gmail dot com>
-" Last Modified: 2017 Jan 27
+" Last Modified: 2017 Oct 10
 " Based On:      sqlplus.vim (author: Jamis Buck)
 " Created:       2002-05-24
 " Homepage:      http://vim.sourceforge.net/script.php?script_id=356
@@ -40,7 +40,7 @@ if v:version < 702
     echomsg "dbext: Version 22.00 or higher requires Vim7.2 or higher.  Version 21.00 can stil be used with Vim 7.1 and lower."
     finish
 endif
-let g:loaded_dbext = 2500
+let g:loaded_dbext = 2600
 
 " Turn on support for line continuations when creating the script
 let s:cpo_save = &cpo

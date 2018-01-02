@@ -1,4 +1,4 @@
-*dbext.txt*	For Vim version 7.0.  Last change: 2017 Jan 30
+*dbext.txt*	For Vim version 7.0.  Last change: 2017 Nov 17
 
 
                 	  VIM REFERENCE MANUAL
@@ -7,7 +7,7 @@
                      Peter Bagyinszki
 
 	  	Database extension plugin (dbext.vim) manual
-	  	dbext.vim version 25.00
+	  	dbext.vim version 26.00
 
 For instructions on installing this file, type
 	:help add-local-help
@@ -117,6 +117,24 @@ David Fishburn
 
 ==============================================================================
 2. What's New						*dbext-new*
+
+Version 26.00 (Nov 17, 2017)
+
+ New Features
+ ------------
+ - New option g:dbext_default_job_show_msgs to control whether information
+   messages are displayed when starting and stop jobs.  Regular status
+   messages continue to display.
+ - New option g:dbext_default_job_pipe_regex to control how to identify
+   and strip piped in files and specify it separately via job options.
+ - Renamed option g:dbext_default_use_jobs to g:dbext_default_job_enable
+   to better support tab completion for the DBSetOption command.
+
+ Bug Fixes
+ ---------
+ - Also check for 'timers' when checking for job support.
+ - Revamped job support.  Tested on Windows, Linux and OSX.  Works on
+   long running and very short jobs where it was erratic on first release.
 
 Version 25.00 (Jan 30, 2017)
 
@@ -1032,11 +1050,11 @@ Version 2.01 (Jul 22, 2004)
  - New functionality for better integration with the Intellisense SQL plugin.
  - Ability to change the title of the window/buffer.
  - Integrated Login support for windows.
- - Added new functionality to these commands:   |dbext-mappings|
+ - Added new functionality to these commands:
      DBGetOption
      DBSetOption
      DBExecRangeSQL
- - Added 4 new options:                         |dbext-configure-variables|
+ - Added 4 new options:
      replace_title
      custom_title
      use_tbl_alias
@@ -1834,9 +1852,9 @@ Version 2.00 (Jul 11, 2004)
         specify. >
             :DBSetOption filetype=sql
             let g:dbext_default_profile_test = 'type=ASA:user=DBA:passwd=SQL:filetype=sql'
-    dbext_default_use_jobs
+    dbext_default_job_enable
 <       Default: 1
-        New feature to version 25.0.  Useful when using any of the database
+        New feature to version 26.0.  Useful when using any of the database
         types that must spawn an executable (i.e. not DBI or ODBC).
         Vim 8 introduced a new Job / Channel feature which allows asynchronous
         execution of background jobs.  So, if executing a query (without jobs)
@@ -1844,14 +1862,31 @@ Version 2.00 (Jul 11, 2004)
         and displays a result.  When using this feature (:echo has('job')) the
         query will take place in the background allowing you to continue
         editing your code until it completes. >
-            :DBSetOption use_jobs=1
-            let g:dbext_default_use_jobs = 1
+            :DBSetOption job_enable=1
+            let g:dbext_default_job_enable = 1
     dbext_default_job_status_update_ms
 <       Default: 2000
         New feature to version 25.0.  When running a SQL statement via
         jobs, a status is displayed to the user every 2 seconds. >
             :DBSetOption job_status_update_ms=5000
             let g:dbext_default_job_status_update_ms = 5000
+    dbext_default_job_show_msgs
+<       Default: 1
+        New feature to version 25.0.  When running a SQL statement via
+        jobs, a status is displayed to the user every 2 seconds. These
+        are echomsgs, rather than messages displayed in the result buffer.
+        Version 26 adds additional information into the result buffer
+        so this can allow you to reduce some messages. >
+            :DBSetOption job_show_msgs=0
+            let g:dbext_default_job_show_msgs = 0
+    dbext_default_job_pipe_regex
+<       Default: \%(@\|<\)
+        New feature to version 26.0.  For the database types which run a
+        command from a shell which pipe the SQL statements into the utility
+        using a pipe command, then when running a job, the input file is 
+        specified in a different way.  This allows a configurable way of
+        identifing and removing the pipe when setting up the job. >
+            let g:dbext_default_job_pipe_regex = '\%(@\|<\)'
 
 
 <
