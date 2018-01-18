@@ -106,7 +106,7 @@ function! dbext#DB_buildLists()
     call add(s:db_types_mv, 'HANA')
     " SAP Sybase IQ (fishburn)
     call add(s:db_types_mv, 'IQ')
-    " Crate (Mathias Fuﬂenegger)
+    " Crate (Mathias Fu√üenegger)
     call add(s:db_types_mv, 'CRATE')
 
     " The following are only available with the
@@ -1335,7 +1335,7 @@ function! s:DB_varToString(name)
     endif
 endfunction
 
-"FIXME: Csin·lni kell erre egy kommandot.
+"FIXME: Csin√°lni kell erre egy kommandot.
 function! s:DB_getParameters(scope)
     "scope must be 'b', 'g', 'd' (buffer, global, default)
     if (a:scope == "b")
@@ -4115,7 +4115,7 @@ function! s:DB_SQLSRV_execSql(str)
                 \ s:DB_option(' -P',  s:DB_get("passwd"), ' ') .
                 \ s:DB_option(' -H ', s:DB_get("host"), ' ') .
                 \ s:DB_option(' -S ', s:DB_get("srvname"), ' ') .
-                \ s:DB_option(' -d ', s:DB_get("dbname"), ' ') .
+                \ s:DB_option(' -D ', s:DB_get("dbname"), ' ') .
                 \ s:DB_option(' ', dbext#DB_getWTypeDefault("extra"), '') .
                 \ ' -i ' . s:dbext_tempfile
     let result = s:DB_runCmdJobSupport(dbext_bin, cmd, output, "")
